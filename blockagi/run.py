@@ -8,7 +8,7 @@ from blockagi.tools import (
     GoogleSearchLinksTool,
     VisitWebTool,
 )
-from langchain.chat_models import ChatOpenAI
+from langchain_community.chat_models import ChatOllama
 
 
 def run_blockagi(
@@ -40,7 +40,8 @@ def run_blockagi(
         )
     )
 
-    llm = DDGChatModel(
+    llm = ChatOllama(
+        model= "llama2:13b", # "llama3",
         callbacks=[llm_callback],
     )  # type: ignore
 
