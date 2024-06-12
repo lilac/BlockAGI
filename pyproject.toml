@@ -10,9 +10,9 @@ license = "Apache-2.0"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.11"
 langchain = "^0.0.215"
-duckduckgo-search = "^3.8.3"
+duckduckgo-search = "^6.1.5"
 playwright = "^1.35.0"
 html2text = "^2020.1.16"
 url-normalize = "^1.4.3"
