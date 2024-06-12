@@ -1,5 +1,6 @@
 import os
 from blockagi.chains import BlockAGIChain
+from blockagi.chat import DDGChatModel
 from blockagi.schema import Findings
 from blockagi.tools import (
     DDGSearchAnswerTool,
@@ -39,11 +40,7 @@ def run_blockagi(
         )
     )
 
-    llm = ChatOpenAI(
-        temperature=0.8,
-        streaming=True,
-        model=openai_model,
-        openai_api_key=openai_api_key,
+    llm = DDGChatModel(
         callbacks=[llm_callback],
     )  # type: ignore
 
