@@ -609,7 +609,7 @@ export default function Home() {
       const newData = await fetchData();
       if (newData) setData(newData);
       else setData((prevData) => ({ ...prevData, is_live: false }));
-    }, 200);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
