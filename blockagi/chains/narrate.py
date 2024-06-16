@@ -96,7 +96,7 @@ class NarrateChain(CustomCallbackLLMChain):
                 "```\n"
                 f"{findings.narrative}\n"
                 "```\n\n"
-                "You should ONLY respond in the JSON format as described below\n"
+                "You should ONLY respond in the format as described below\n"
                 "## RESPONSE FORMAT:\n"
                 "- Markdown document with up to 8 sections, each with up to 350 words.\n"
                 "- The content should be concise and easy to digest. Avoid repeating yourself.\n"

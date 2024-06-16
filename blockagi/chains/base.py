@@ -1,3 +1,4 @@
+import json
 import time
 from typing import Dict, Any
 from langchain.callbacks.base import BaseCallbackHandler
@@ -52,13 +53,14 @@ class CustomCallbackChain(Chain):
 class CustomCallbackLLMChain(CustomCallbackChain):
     llm: BaseChatModel
 
-    def retry_llm(self, messages, retry_count=5):
+    def retry_llm(self, messages, retry_count=5, json_output=False):
         sleep_duration = 0.5
         for _idx in range(retry_count - 1):
             try:
-                return self.llm(messages)
+                response = self.llm(messages)
+                return json.loads(response.content) if json_output else response
             except Exception as e:
                 self.fire_log(f"LLM failed with error: {e}; Retrying")
                 time.sleep(sleep_duration)
             sleep_duration *= 2
-        return self.llm(messages)
+        raise Exception(f"LLM failed after {retry_count} retries")

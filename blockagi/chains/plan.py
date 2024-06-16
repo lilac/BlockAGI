@@ -92,15 +92,15 @@ class PlanChain(CustomCallbackLLMChain):
             ),
         ]
 
-        response = self.retry_llm(messages)
+        response = self.retry_llm(messages, json_output=True)
 
         research_tasks = [
             ResearchTask(
                 tool=task["tool"],
                 args=task["args"],
-                reasoning=task["reasoning"],
+                reasoning=task.get("reasoning", ""),
             )
-            for task in json.loads(response.content)
+            for task in response
         ]
 
         return {"research_tasks": research_tasks}
